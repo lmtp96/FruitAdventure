@@ -13,6 +13,7 @@ public class Player : MonoBehaviour
     private bool canBeControlled = false;
     public bool CanBeControlled => canBeControlled;
     private float defaultGravityScale;
+    private bool isDead;
     [Header("Player Visuals")]
     [SerializeField] private AnimatorOverrideController[] animators;
     [SerializeField] private GameObject deathVfx;
@@ -43,6 +44,9 @@ public class Player : MonoBehaviour
 
     public void Damage()
     {
+        if (isDead)
+            return;
+
         if (gameDifficulty == DifficultyType.Normal)
         {
 
@@ -139,8 +143,12 @@ public class Player : MonoBehaviour
 
     public void Die()
     {
-        AudioManager.instance.PlaySFX(0);
+        if(isDead)
+            return;
 
+        isDead = true;
+
+        AudioManager.instance.PlaySFX(0);
         GameObject newDeathVfx = Instantiate(deathVfx, transform.position, Quaternion.identity);
         Destroy(gameObject);
     }

@@ -12,6 +12,7 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] private Transform respawnPoint;
     [SerializeField] private float respawnDelay;
     public Player player;
+    private bool isRespawning;
 
     private void Awake()
     {
@@ -32,16 +33,23 @@ public class PlayerManager : MonoBehaviour
 
     public void RespawnPlayer()
     {
+        if (isRespawning)
+            return;
+
         StartCoroutine(RespawnCourutine());
     }
 
     private IEnumerator RespawnCourutine()
     {
+        isRespawning = true;
         yield return new WaitForSeconds(respawnDelay);
 
         GameObject newPlayer = Instantiate(playerPrefab, respawnPoint.position, Quaternion.identity);
         player = newPlayer.GetComponent<Player>();
+
         OnPlayerRespawn?.Invoke();
+
+        isRespawning = false;
     }
 
     public void UpdateRespawnPosition(Transform newRespawnPoint) => respawnPoint = newRespawnPoint;

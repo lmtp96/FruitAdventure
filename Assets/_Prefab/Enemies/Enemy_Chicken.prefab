@@ -209,7 +209,7 @@ MonoBehaviour:
   deathImpactSpeed: 5
   deathRotationSpeed: 150
   groundCheckDistance: 1.1
-  wallCheckDistance: 0.95
+  wallCheckDistance: 1.1
   whatIsGround:
     serializedVersion: 2
     m_Bits: 8

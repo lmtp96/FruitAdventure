@@ -20,6 +20,9 @@ public class Enemy_Chicken : Enemy
         if (isDead)
             return;
 
+        if (isGrounded && HandleTurnAround())
+            return;
+
         if (isPlayerDetected)
         {
             canMove = true;
@@ -30,19 +33,23 @@ public class Enemy_Chicken : Enemy
             canMove = false;
 
         HandleMovement();
-
-        if (isGrounded)
-            HandleTurnAround();
     }
 
-    private void HandleTurnAround()
+    private bool HandleTurnAround()
     {
         if (!isGroundInfrontDetected || isWallDetected)
         {
+            CancelInvoke(nameof(Flip));
+            canFlip = true;
+
             Flip();
+
             canMove = false;
+            aggroTimer = 0;
             rb.linearVelocity = Vector2.zero;
+            return true;
         }
+        return false;
     }
 
     private void HandleMovement()

@@ -94,6 +94,7 @@
     <Compile Include="Assets\_Scripts\Points\StartPoint.cs" />
     <Compile Include="Assets\_Scripts\Camera\LevelCameraTrigger.cs" />
     <Compile Include="Assets\_Scripts\Managers\DifficultyManager.cs" />
+    <Compile Include="Assets\_Scripts\Parallax\ParallaxBackground.cs" />
     <Compile Include="Assets\_Scripts\Enemies\Enemy_Rino.cs" />
     <Compile Include="Assets\_Scripts\Enemies\Enemy.cs" />
     <Compile Include="Assets\_Scripts\Player\PlayerInputHandler.cs" />
@@ -120,6 +121,7 @@
     <Compile Include="Assets\_Scripts\Traps\Trap_SpikedBall.cs" />
     <Compile Include="Assets\_Scripts\Player\PlayerMovement.cs" />
     <Compile Include="Assets\_Scripts\Traps\Trap_Fire.cs" />
+    <Compile Include="Assets\_Scripts\Parallax\ParallaxLayer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
