@@ -1,2 +1,0 @@
-Git demo note.
-Edit this file to test GitHub Desktop changes.
