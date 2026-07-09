@@ -14,7 +14,8 @@ public class UI_Credits : MonoBehaviour
     private void Awake()
     {
         fadeEffect = GetComponentInChildren<UI_FadeEffect>();
-        fadeEffect.ScreenFade(0, 2);
+        if (fadeEffect != null)
+            fadeEffect.ScreenFade(0, 2);
     }
 
     private void Update()

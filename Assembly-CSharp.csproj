@@ -73,6 +73,7 @@
     <Compile Include="Assets\_Scripts\Traps\Trap_Trampoline.cs" />
     <Compile Include="Assets\_Scripts\UI\UI_UpdateFirstSelected.cs" />
     <Compile Include="Assets\_Scripts\Traps\Trap_Saw.cs" />
+    <Compile Include="Assets\_Scripts\UI\UI_Minimap.cs" />
     <Compile Include="Assets\_Scripts\AnimatedBackground.cs" />
     <Compile Include="Assets\_Scripts\Points\CheckPoint.cs" />
     <Compile Include="Assets\_Scripts\Traps\Trap_Arrow.cs" />
@@ -100,6 +101,7 @@
     <Compile Include="Assets\_Scripts\Player\PlayerInputHandler.cs" />
     <Compile Include="Assets\_Scripts\Points\FinishPoint.cs" />
     <Compile Include="Assets\_Scripts\Traps\Trap_FireButton.cs" />
+    <Compile Include="Assets\_Scripts\Parallax\ParallaxZoneTransitionTrigger.cs" />
     <Compile Include="Assets\_Scripts\DamageTrigger.cs" />
     <Compile Include="Assets\_Scripts\Enemies\Enemy_Bullet.cs" />
     <Compile Include="Assets\_Scripts\Enemies\Enemy_Bat.cs" />
@@ -118,7 +120,9 @@
     <Compile Include="Assets\_Scripts\Enemies\Enemy_BlueBird.cs" />
     <Compile Include="Assets\_Scripts\Traps\Trap_FallingPlatform.cs" />
     <Compile Include="Assets\_Scripts\Managers\ObjectCreator.cs" />
+    <Compile Include="Assets\_Scripts\Parallax\ParallaxZoneTransitionManager.cs" />
     <Compile Include="Assets\_Scripts\Traps\Trap_SpikedBall.cs" />
+    <Compile Include="Assets\_Scripts\UI\UI_MinimapTilemapDrawer.cs" />
     <Compile Include="Assets\_Scripts\Player\PlayerMovement.cs" />
     <Compile Include="Assets\_Scripts\Traps\Trap_Fire.cs" />
     <Compile Include="Assets\_Scripts\Parallax\ParallaxLayer.cs" />
@@ -707,6 +711,14 @@
     </Reference>
     <Reference Include="System.Runtime.CompilerServices.Unsafe">
       <HintPath>Library\PackageCache\com.unity.collections@aea9d3bd5e19\Unity.Collections.Tests\System.Runtime.CompilerServices.Unsafe\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.Android.Types">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\6000.3.9f1\Editor\Data\PlaybackEngines\AndroidPlayer\Unity.Android.Types.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.Android.Gradle">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\6000.3.9f1\Editor\Data\PlaybackEngines\AndroidPlayer\Unity.Android.Gradle.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="netstandard">
