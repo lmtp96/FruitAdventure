@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2745023996667734926}
   - component: {fileID: 4562376489399757917}
-  - component: {fileID: 8862539958372521000}
   m_Layer: 0
   m_Name: CinemachineLimits
   m_TagString: Untagged
@@ -79,18 +78,6 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 53.334343, y: 19.415642}
   m_EdgeRadius: 0
---- !u!114 &8862539958372521000
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1714361433330515910}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7fa771a70976c0648b5a7a131a425959, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::LevelCameraTrigger
 --- !u!1 &8606586903288774749
 GameObject:
   m_ObjectHideFlags: 0

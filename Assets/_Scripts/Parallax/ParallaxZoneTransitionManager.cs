@@ -62,6 +62,9 @@ public class ParallaxZoneTransitionManager : MonoBehaviour
         PlayerMovement movement = player.GetComponent<PlayerMovement>();
         PlayerInputHandler input = player.GetComponent<PlayerInputHandler>();
         Rigidbody2D rb = player.GetComponent<Rigidbody2D>();
+        float originalGravity = 0;
+        RigidbodyConstraints2D originalConstraints = RigidbodyConstraints2D.None;
+
         if (movement != null)
             movement.enabled = false;
 
@@ -69,12 +72,20 @@ public class ParallaxZoneTransitionManager : MonoBehaviour
             input.enabled = false;
 
         if (rb != null)
+        {
+            originalGravity = rb.gravityScale;
+            originalConstraints = rb.constraints;
+
             rb.linearVelocity = Vector2.zero;
+            rb.angularVelocity = 0;
+            rb.gravityScale = 0;
+            rb.constraints = RigidbodyConstraints2D.FreezeAll;
+        }
 
         if (fadeEffect != null)
-            fadeEffect.ScreenFade(1, fadeOutDuration);
-
-        yield return new WaitForSeconds(fadeOutDuration);
+            yield return fadeEffect.ScreenFadeRoutine(1, fadeOutDuration);
+        else
+            yield return new WaitForSecondsRealtime(fadeOutDuration);
 
         if (nextZone.parallaxRoot != null)
             nextZone.parallaxRoot.SetActive(true);
@@ -96,12 +107,20 @@ public class ParallaxZoneTransitionManager : MonoBehaviour
 
         currentZone = nextZone;
 
-        yield return new WaitForSeconds(blackHoldDuration);
+        yield return null;
+        yield return new WaitForSecondsRealtime(blackHoldDuration);
 
         if(fadeEffect != null)
-            fadeEffect.ScreenFade(0, fadeInDuration);
+            yield return fadeEffect.ScreenFadeRoutine(0, fadeInDuration);
+        else
+            yield return new WaitForSecondsRealtime(fadeInDuration);
 
-        yield return new WaitForSeconds(fadeInDuration);
+        if(rb != null)
+        {
+            rb.constraints = originalConstraints;
+            rb.gravityScale = originalGravity;
+            rb.linearVelocity = Vector2.zero;
+        }
 
         if (movement != null)
             movement.enabled = true;

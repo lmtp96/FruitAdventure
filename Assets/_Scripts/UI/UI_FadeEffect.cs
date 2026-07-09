@@ -34,4 +34,21 @@ public class UI_FadeEffect : MonoBehaviour
 
         onComplete?.Invoke();
     }
+
+    public IEnumerator ScreenFadeRoutine(float targetAlpha,float duration)
+    {
+        float time = 0;
+        Color currentColor = fadeImage.color;
+        float startAlpha = currentColor.a;
+
+        while(time <  duration)
+        {
+            time += Time.unscaledDeltaTime;
+            float alpha = Mathf.Lerp(startAlpha,targetAlpha, time / duration);
+            fadeImage.color = new Color(currentColor.r,currentColor.g,currentColor.b,alpha);
+            yield return null;
+        }
+
+        fadeImage.color = new Color(currentColor.r, currentColor.g, currentColor.b, targetAlpha);
+    }
 }

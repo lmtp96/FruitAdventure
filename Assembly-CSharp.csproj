@@ -67,6 +67,7 @@
     <Compile Include="Assets\_Scripts\Enemies\Enemy_Snail.cs" />
     <Compile Include="Assets\_Scripts\Enemies\Enemy_Bullet_Bee.cs" />
     <Compile Include="Assets\_Scripts\Managers\PlayerManager.cs" />
+    <Compile Include="Assets\_Scripts\Parallax\ParallaxZoneGateTrigger.cs" />
     <Compile Include="Assets\_InputSystem\PlayerInputSet.cs" />
     <Compile Include="Assets\_Scripts\UI\UI_Difficulty.cs" />
     <Compile Include="Assets\_Scripts\UI\UI_LevelSelection.cs" />
@@ -101,7 +102,6 @@
     <Compile Include="Assets\_Scripts\Player\PlayerInputHandler.cs" />
     <Compile Include="Assets\_Scripts\Points\FinishPoint.cs" />
     <Compile Include="Assets\_Scripts\Traps\Trap_FireButton.cs" />
-    <Compile Include="Assets\_Scripts\Parallax\ParallaxZoneTransitionTrigger.cs" />
     <Compile Include="Assets\_Scripts\DamageTrigger.cs" />
     <Compile Include="Assets\_Scripts\Enemies\Enemy_Bullet.cs" />
     <Compile Include="Assets\_Scripts\Enemies\Enemy_Bat.cs" />

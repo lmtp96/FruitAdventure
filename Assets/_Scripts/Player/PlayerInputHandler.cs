@@ -39,6 +39,7 @@ public class PlayerInputHandler : MonoBehaviour
 
         inputActions.UI.Pause.performed -= OnPausePerformed;
 
+        moveInput = Vector2.zero;
         inputActions.Disable();
     }
 
@@ -77,6 +78,7 @@ public class PlayerInputHandler : MonoBehaviour
     // Tat input gameplay cua Player, dung khi dang pause
     public void DisablePlayerInput()
     {
+        moveInput = Vector2.zero;
         inputActions.Player.Disable();
     }
 
