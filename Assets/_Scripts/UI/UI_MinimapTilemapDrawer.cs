@@ -27,6 +27,34 @@ public class UI_MinimapTilemapDrawer : MonoBehaviour
         DrawPlatformLines();
     }
 
+    private void FindPlatformTilemap()
+    {
+        if (platformTilemap != null)
+            return;
+        Tilemap[] tilemaps = FindObjectsByType<Tilemap>(FindObjectsSortMode.None);
+
+        foreach (Tilemap tilemap in tilemaps)
+        {
+            if (tilemap.gameObject.name == "Ground")
+            {
+                platformTilemap = tilemap;
+                return;
+            }
+        }
+    }
+    private void CalculateWorldBounds()
+    {
+        BoundsInt cellBounds = platformTilemap.cellBounds;
+
+        Vector3 minWorld = platformTilemap.CellToWorld
+            (new Vector3Int(cellBounds.xMin, cellBounds.yMin, 0));
+        Vector3 maxWorld = platformTilemap.CellToWorld
+            (new Vector3Int(cellBounds.xMax, cellBounds.yMax, 0));
+
+        worldMin = minWorld;
+        worldMax = maxWorld;
+    }
+
     private void DrawPlatformLines()
     {
         if (platformTilemap == null || mapArea == null || lineParent == null || linePrefab == null)
@@ -92,34 +120,5 @@ public class UI_MinimapTilemapDrawer : MonoBehaviour
         float y = Mathf.Lerp(-mapArea.rect.height / 2f, mapArea.rect.height / 2f, progressY);
 
         return new Vector2(x, y);
-    }
-
-    private void CalculateWorldBounds()
-    {
-        BoundsInt cellBounds = platformTilemap.cellBounds;
-
-        Vector3 minWorld = platformTilemap.CellToWorld
-            (new Vector3Int(cellBounds.xMin, cellBounds.yMin, 0));
-        Vector3 maxWorld = platformTilemap.CellToWorld
-            (new Vector3Int(cellBounds.xMax, cellBounds.yMax, 0));
-
-        worldMin = minWorld;
-        worldMax = maxWorld;
-    }
-
-    private void FindPlatformTilemap()
-    {
-        if (platformTilemap != null)
-            return;
-        Tilemap[] tilemaps = FindObjectsByType<Tilemap>(FindObjectsSortMode.None);
-
-        foreach(Tilemap tilemap in tilemaps)
-        {
-            if (tilemap.gameObject.name == "Ground")
-            {
-                platformTilemap = tilemap;
-                return;
-            }
-        }
     }
 }

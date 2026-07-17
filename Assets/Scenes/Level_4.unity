@@ -10787,6 +10787,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 298274401}
     - target: {fileID: 7770584535588470677, guid: c09787a728cc33d45b803af0fc4c4d41, type: 3}
+      propertyPath: blackHoldDuration
+      value: 1.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7770584535588470677, guid: c09787a728cc33d45b803af0fc4c4d41, type: 3}
       propertyPath: zones.Array.data[0].levelCamera
       value: 
       objectReference: {fileID: 2121721420}
