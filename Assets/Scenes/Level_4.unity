@@ -2110,7 +2110,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 830248485821945264, guid: a6cac446ad40e0f40af5194a800692f9, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -7.8785405
+      value: -7.97
       objectReference: {fileID: 0}
     - target: {fileID: 830248485821945264, guid: a6cac446ad40e0f40af5194a800692f9, type: 3}
       propertyPath: m_LocalPosition.z
@@ -10689,6 +10689,14 @@ PrefabInstance:
       propertyPath: zoneManager
       value: 
       objectReference: {fileID: 842520007}
+    - target: {fileID: 1435078012543630247, guid: c8ab590d4e76efa46a4f6c9073e57cee, type: 3}
+      propertyPath: firstZoneName
+      value: Forest
+      objectReference: {fileID: 0}
+    - target: {fileID: 1435078012543630247, guid: c8ab590d4e76efa46a4f6c9073e57cee, type: 3}
+      propertyPath: secondZoneName
+      value: Factory
+      objectReference: {fileID: 0}
     - target: {fileID: 2308776526127895440, guid: c8ab590d4e76efa46a4f6c9073e57cee, type: 3}
       propertyPath: m_LocalPosition.x
       value: 10.2

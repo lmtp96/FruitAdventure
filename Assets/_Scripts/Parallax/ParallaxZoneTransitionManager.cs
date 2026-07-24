@@ -26,6 +26,7 @@ public class ParallaxZoneTransitionManager : MonoBehaviour
     private void Start()
     {
         currentZone = FindZone(startZonename);
+        Player player = FindFirstObjectByType<Player>();
 
         foreach (Zone zone in zones)
         {
@@ -35,8 +36,12 @@ public class ParallaxZoneTransitionManager : MonoBehaviour
                 zone.parallaxRoot.SetActive(isStartZone);
 
             if (zone.levelCamera != null)
+            {
                 zone.levelCamera.EnableCamera(isStartZone);
-               
+
+                if (isStartZone && player != null)
+                    zone.levelCamera.SetNewTarger(player.transform);
+            }         
         }
 
         if (fadeEffect != null)

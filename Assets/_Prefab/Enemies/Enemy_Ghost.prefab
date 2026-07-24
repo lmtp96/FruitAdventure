@@ -205,7 +205,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy_Ghost
   moveSpeed: 2
-  idleDuration: 1.5
+  idleDuration: 2.5
   deathImpactSpeed: 5
   deathRotationSpeed: 150
   groundCheckDistance: 1.1
@@ -219,9 +219,9 @@ MonoBehaviour:
     m_Bits: 256
   groundCheck: {fileID: 4741918181032836863}
   activeDuration: 1.5
-  xMinDistance: 5
-  yMinDistance: -7
-  yMaxDistance: 7
+  xMinDistance: 3.5
+  yMinDistance: 0.8
+  yMaxDistance: 2.2
 --- !u!1 &5274706743972417993
 GameObject:
   m_ObjectHideFlags: 0

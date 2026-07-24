@@ -1,10 +1,11 @@
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using UnityEngine.UI;
+using System.Collections.Generic;
 
 public class UI_MinimapTilemapDrawer : MonoBehaviour
 {
-    [SerializeField] private Tilemap platformTilemap;
+    [SerializeField] private Tilemap[] platformTilemaps;
     [SerializeField] private RectTransform mapArea;
     [SerializeField] private RectTransform lineParent;
     [SerializeField] private Image linePrefab;
@@ -19,43 +20,54 @@ public class UI_MinimapTilemapDrawer : MonoBehaviour
 
     private void Awake()
     {
-        FindPlatformTilemap();
-        if (platformTilemap == null)
+        FindPlatformTilemaps();
+        if (platformTilemaps == null || platformTilemaps.Length == 0)
             return;
 
         CalculateWorldBounds();
-        DrawPlatformLines();
+        foreach (Tilemap platformTilemap in platformTilemaps)
+            DrawPlatformLines(platformTilemap);
     }
 
-    private void FindPlatformTilemap()
+    private void FindPlatformTilemaps()
     {
-        if (platformTilemap != null)
+        if (platformTilemaps != null && platformTilemaps.Length > 0)
             return;
-        Tilemap[] tilemaps = FindObjectsByType<Tilemap>(FindObjectsSortMode.None);
+        Tilemap[] allTilemaps = FindObjectsByType<Tilemap>(FindObjectsInactive.Include,FindObjectsSortMode.None);
 
-        foreach (Tilemap tilemap in tilemaps)
+        int groundLayer = LayerMask.NameToLayer("Ground");
+        List<Tilemap> results  = new List<Tilemap>();
+
+        foreach (Tilemap tilemap in allTilemaps)
         {
-            if (tilemap.gameObject.name == "Ground")
+            if (tilemap.gameObject.layer == groundLayer)
             {
-                platformTilemap = tilemap;
-                return;
+               results.Add(tilemap);
             }
         }
+        platformTilemaps = results.ToArray();
     }
     private void CalculateWorldBounds()
     {
-        BoundsInt cellBounds = platformTilemap.cellBounds;
+        worldMin = new Vector2(float.PositiveInfinity, float.PositiveInfinity);
+        worldMax = new Vector2(float.NegativeInfinity, float.NegativeInfinity);
 
-        Vector3 minWorld = platformTilemap.CellToWorld
-            (new Vector3Int(cellBounds.xMin, cellBounds.yMin, 0));
-        Vector3 maxWorld = platformTilemap.CellToWorld
-            (new Vector3Int(cellBounds.xMax, cellBounds.yMax, 0));
+        foreach (Tilemap platformTilemap in platformTilemaps)
+        {
+            if (platformTilemap == null)
+                continue;
 
-        worldMin = minWorld;
-        worldMax = maxWorld;
+            BoundsInt bounds = platformTilemap.cellBounds;
+
+            Vector3 min = platformTilemap.CellToWorld(bounds.min);
+            Vector3 max = platformTilemap.CellToWorld(bounds.max);
+
+            worldMin = Vector2.Min(worldMin,new Vector2(min.x,min.y));
+            worldMax = Vector2.Max(worldMax,new Vector2(max.x,max.y));
+        }
     }
 
-    private void DrawPlatformLines()
+    private void DrawPlatformLines(Tilemap platformTilemap)
     {
         if (platformTilemap == null || mapArea == null || lineParent == null || linePrefab == null)
             return;
@@ -83,17 +95,17 @@ public class UI_MinimapTilemapDrawer : MonoBehaviour
                 if(endOfSegment)
                 {
                     int endX = isTopPlatform && x == bounds.xMax - 1 ? x : x - 1;
-                    CreateLine(startX, endX, y);
+                    CreateLine(platformTilemap, startX, endX, y);
                     startX = int.MinValue;
                 }
             }
         }
     }
 
-    private void CreateLine(int startX, int endX, int y)
+    private void CreateLine(Tilemap tilemap, int startX, int endX, int y)
     {
-        Vector3 startWorld = platformTilemap.GetCellCenterWorld(new Vector3Int(startX, y, 0));
-        Vector3 endWorld = platformTilemap.GetCellCenterWorld(new Vector3Int(endX, y, 0));
+        Vector3 startWorld = tilemap.GetCellCenterWorld(new Vector3Int(startX, y, 0));
+        Vector3 endWorld = tilemap.GetCellCenterWorld(new Vector3Int(endX, y, 0));
 
         Vector2 startUI = WorldToMapPosition(startWorld);
         Vector2 endUI = WorldToMapPosition(endWorld);

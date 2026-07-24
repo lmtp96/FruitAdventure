@@ -119,6 +119,7 @@
     <Compile Include="Assets\_Scripts\UI\UI_Credits.cs" />
     <Compile Include="Assets\_Scripts\Enemies\Enemy_BlueBird.cs" />
     <Compile Include="Assets\_Scripts\Traps\Trap_FallingPlatform.cs" />
+    <Compile Include="Assets\_Scripts\Enemies\GraveGhostActivator.cs" />
     <Compile Include="Assets\_Scripts\Managers\ObjectCreator.cs" />
     <Compile Include="Assets\_Scripts\Parallax\ParallaxZoneTransitionManager.cs" />
     <Compile Include="Assets\_Scripts\Traps\Trap_SpikedBall.cs" />
